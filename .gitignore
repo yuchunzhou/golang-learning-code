@@ -1,0 +1,8 @@
+*
+!.gitignore
+
+!/**/
+!*.go
+!go.mod
+!*.c
+!*.sh
