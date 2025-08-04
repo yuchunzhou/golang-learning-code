@@ -37,7 +37,7 @@ func main() {
 
 	values := []string{"aaa", "bbb", "ccc"}
 	for _, value := range values { // value escapes to heap
-		fmt.Printf("address of value: %p\n", &value) // three value variables have different address
+		fmt.Printf("address of value: %p\n", &value) // three value variables have different addresses
 		go func() {
 			fmt.Println(value)
 		}()
