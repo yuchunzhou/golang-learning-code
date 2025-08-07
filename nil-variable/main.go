@@ -52,6 +52,8 @@ func main() {
 
 	c = make([]string, 1)
 	fmt.Println(c[0])
-	c = append(c, "hello")
+	// c = append(c, "hello")
+	c[0] = "hello"
 	fmt.Println(c)
+	fmt.Println(len(c))
 }

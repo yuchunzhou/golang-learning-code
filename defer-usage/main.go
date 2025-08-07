@@ -2,6 +2,16 @@ package main
 
 import "fmt"
 
+func bar() int {
+	val := 1
+
+	defer func() {
+		val += 1
+	}()
+
+	return val
+}
+
 type Foo struct {
 	data string
 }
@@ -15,14 +25,14 @@ func buz() (data int) {
 	a := 1
 	b := a // copied from a
 	a = 2
-	fmt.Println("b = ", b) // 1
+	fmt.Printf("b = %d\n", b) // 1
 
 	c := Foo{
 		data: "hello",
 	}
 	d := c // copied from c
 	c.data = "world"
-	fmt.Println("d = ", d) // hello
+	fmt.Printf("d = %#v\n", d) // hello
 
 	defer func() {
 		val += 1
@@ -58,7 +68,7 @@ func foo() func() int {
 	}()
 	defer func(data int) {
 		data = data + 1
-		fmt.Println("foo defer 4: ", data)
+		fmt.Printf("foo defer 4: %d\n", data)
 	}(data)
 
 	fmt.Println("in foo ...")
@@ -76,4 +86,5 @@ func main() {
 	fmt.Println(foo()()) // 2
 	fmt.Println(fuzz())  // 1
 	fmt.Println(buz())   // 1
+	fmt.Println(bar())   // 1
 }

@@ -9,7 +9,6 @@ func panicFunc() {
 	defer func() {
 		r := recover()
 		fmt.Printf("r in panicFunc func: %v\n", r)
-		fmt.Println("panicFunc is still running ...")
 	}()
 
 	panic("oops")
@@ -18,12 +17,14 @@ func panicFunc() {
 func main() {
 	r := recover()
 	fmt.Printf("r in main func: %v\n", r)
+
 	go func() {
 		for {
 			fmt.Println("another goroutine is runnning ...")
 			time.Sleep(time.Second * 1)
 		}
 	}()
+
 	panicFunc()
 	time.Sleep(time.Second * 3)
 }
