@@ -4,5 +4,6 @@
 !/**/
 !*.go
 !go.mod
+!go.sum
 !*.c
 !*.sh
