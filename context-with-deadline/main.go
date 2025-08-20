@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -35,6 +36,9 @@ type Value int
 func main() {
 	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(5*time.Second))
 	defer cancel()
+
+	// *context.timerCtx
+	fmt.Printf("ctx type: %s\n", reflect.TypeOf(ctx))
 
 	// store a value in context
 	value := Value(1)

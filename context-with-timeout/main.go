@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -28,6 +29,9 @@ func task_func(ctx context.Context, args string, sync_ch chan int) {
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
+
+	// *context.timerCtx
+	fmt.Printf("ctx type: %s\n", reflect.TypeOf(ctx))
 
 	// buffered channel will not block
 	sync_ch := make(chan int, 1)
