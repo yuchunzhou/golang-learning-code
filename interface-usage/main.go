@@ -14,10 +14,14 @@ func helloFunc(who HelloInterface) {
 	who.SayHello()
 }
 
-type Foo struct{}
+type Foo struct {
+	value int
+}
 
+// foo is just a copy
 func (foo Foo) SayHello() {
 	fmt.Println("hello from Foo")
+	foo.value = 1
 }
 
 type Bar struct{}
@@ -29,10 +33,8 @@ func (bar *Bar) SayHello() {
 func main() {
 	foo := Foo{}
 	helloFunc(foo)
+	fmt.Printf("%d\n", foo.value) // 0
 
 	bar := Bar{}
 	helloFunc(&bar)
-
-	// function name is a pointer
-	fmt.Printf(">>> %p\n", helloFunc)
 }
