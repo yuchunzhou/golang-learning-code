@@ -16,7 +16,7 @@ func goroutine_id() int {
 }
 
 func main() {
-	// runtime.GOMAXPROCS(runtime.NumCPU())
+	fmt.Println(runtime.GOMAXPROCS(runtime.NumCPU()))
 
 	for _ = range 1000 {
 		go func() {
