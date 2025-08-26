@@ -2,30 +2,31 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"unsafe"
 )
 
+// local variables are allocated on stack
+// assignment to variables just modifies the stack memory content
+
 func main() {
-	// variable has its own memory
-	// assgnment just modifies the memory content
 	a := 1
-	fmt.Printf("a address 1: %p\n", &a)
+	fmt.Printf("a(%T) address 1: %p\n", &a, &a)
 
 	a = 2
-	fmt.Printf("a address 2: %p\n", &a)
+	fmt.Printf("a(%T) address 2: %p\n", &a, &a)
 
 	// make just for ref types: slice map chan
-	// m is a pointer, points to the underlying dada struct
 	m := make(map[string]int, 5)
 	m["a"] = 1
-	fmt.Printf("m address 1: %p %T %d\n", &m, m, unsafe.Sizeof(m))
+	fmt.Printf("m(%T) address 1: %p %T %d\n", &m, &m, m, unsafe.Sizeof(m))
 
-	// previous map is GCed
+	runtime.GC()
 
-	m = make(map[string]int, 10)
+	m = make(map[string]int, 100)
 	m["a"] = 2
 	m["b"] = 3
-	fmt.Printf("m address 2: %p %T %d\n", &m, m, unsafe.Sizeof(m))
+	fmt.Printf("m(%T) address 2: %p %T %d\n", &m, &m, m, unsafe.Sizeof(m))
 
 	// new returns a pointer
 	x := new(int)
