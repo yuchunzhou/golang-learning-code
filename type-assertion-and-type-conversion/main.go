@@ -35,6 +35,10 @@ func main() {
 	s4, ok := s3.(string)
 	fmt.Printf("s4: %s ok: %t\n", s4, ok)
 
+	var s5 interface{} = "hello"
+	s6 := s5.(string)
+	fmt.Printf("s5: %s\n", s6)
+
 	s := &Struct{}
 	foo(s)
 
