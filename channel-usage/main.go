@@ -6,6 +6,13 @@ import (
 )
 
 func main() {
+	chan0 := make(chan any, 1)
+	go func() {
+		chan0 <- 1
+	}()
+	time.Sleep(1 * time.Second)
+	fmt.Printf("ch0 output: %d\n", <-chan0)
+
 	ch1 := make(chan int)
 	go func() {
 		fmt.Printf("ch1 output: %d\n", <-ch1) // will never output

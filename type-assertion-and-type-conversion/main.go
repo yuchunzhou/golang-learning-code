@@ -27,7 +27,7 @@ func foo(arg Foo) {
 
 func main() {
 	// type assertion
-	var s1 interface{} = "hello"
+	var s1 any = "hello"
 	s2, ok := s1.(string)
 	fmt.Printf("s2: %s ok: %t\n", s2, ok)
 
@@ -35,7 +35,7 @@ func main() {
 	s4, ok := s3.(string)
 	fmt.Printf("s4: %s ok: %t\n", s4, ok)
 
-	var s5 interface{} = "hello"
+	var s5 any = "hello"
 	s6 := s5.(string)
 	fmt.Printf("s5: %s\n", s6)
 
